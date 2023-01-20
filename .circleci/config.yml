@@ -30,6 +30,10 @@ jobs:
           command: docker-compose --version
 
       - run:
+          name: Listing dir
+          command: ls -l
+          
+      - run:
           name: Docker Compose Up
           command: docker-compose up -d
 
