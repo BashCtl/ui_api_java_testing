@@ -15,9 +15,9 @@ jobs:
 
     steps:
       - checkout
-      - browser-tools/install-chrome
-      - browser-tools/install-firefox
-      - browser-tools/install-edge
+#      - browser-tools/install-chrome
+#      - browser-tools/install-firefox
+#      - browser-tools/install-edge
 
       - run:
           name: Install Docker Client
