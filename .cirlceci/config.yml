@@ -1,0 +1,39 @@
+version: 2.1
+
+orbs:
+  browser-tools: circleci/browser-tools@1.4.1
+
+jobs:
+  ui-web-testing:
+    docker:
+      - image: cimg/openjdk:17.0-browsers
+
+    working_directory: ~/ui-compend
+
+    environment:
+      MAVEN_OPTS: -Xmx4200m -Xms1024m
+
+    steps:
+      - checkout
+      - browser-tools/install-chrome
+      - browser-tools/install-firefox
+      - browser-tools/install-edge
+
+      - run:
+          name: Install Docker Client
+          command: |
+            set -x
+            VER="17.03.0-ce"
+            curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
+            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
+            mv /tmp/docker/* /usr/bin
+
+      - run:
+          name: Docker Compose Up
+          command: docker-compose up -d
+
+workflows:
+  regression:
+    jobs:
+      - ui-web-testing
+
