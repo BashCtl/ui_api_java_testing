@@ -36,7 +36,6 @@ jobs:
             cd ui-compend
             sudo chown $USER:$USER -R .
             docker-compose -f docker-compose.yml up -d
-            - restore_cache:
 
       - run:
           name: Get Selenium Grid Status
