@@ -33,7 +33,9 @@ jobs:
 
       - run:
           name: Add User To The Docker Group
-          command: sudo usermod -aG docker ${USER}
+          command: |
+            sudo systemctl start docker
+            sudo usermod -aG docker ${USER}
 
       - run:
           name: Docker Compose Up
