@@ -31,11 +31,11 @@ jobs:
 
       - run:
           name: Listing dir
-          command: ls -l
+          command: ls -l /ui-compend
 
-      - run:
-          name: Docker Compose Up
-          command: docker-compose -f /ui-compend/docker-compose.yml up -d
+#      - run:
+#          name: Docker Compose Up
+#          command: docker-compose -f /ui-compend/docker-compose.yml up -d
 
 workflows:
   regression:
