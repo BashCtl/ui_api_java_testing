@@ -39,7 +39,9 @@ jobs:
 
       - run:
           name: Docker Compose Up
-          command: sudo docker-compose -f ui-compend/docker-compose.yml up -d
+          command: |
+            sudo chown $USER:$USER -R .
+            docker-compose -f ui-compend/docker-compose.yml up -d
 
 workflows:
   regression:
