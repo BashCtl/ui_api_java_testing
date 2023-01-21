@@ -43,7 +43,9 @@ jobs:
 
       - run:
           name: Check Running Containers
-          command: docker ps
+          command: |
+            docker ps
+            ping localhost
       - run:
           name: Check Port Listening
           command: netstat -tnlp
