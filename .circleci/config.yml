@@ -15,9 +15,6 @@ jobs:
 
     steps:
       - checkout
-#      - browser-tools/install-chrome
-#      - browser-tools/install-firefox
-#      - browser-tools/install-edge
 
       - run:
           name: Install Docker Compose
@@ -25,17 +22,9 @@ jobs:
             curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
+
       - setup_remote_docker:
           docker_layer_caching: false
-      - run:
-          name: Verify Docker  And Docker Compose Version
-          command: |
-            docker-compose --version
-            docker --version
-
-#      - run:
-#          name: Add User To The Docker Group
-#          command: sudo usermod -aG docker ${USER}
 
       - run:
           name: Docker Compose Up
@@ -43,6 +32,21 @@ jobs:
             cd ui-compend
             sudo chown $USER:$USER -R .
             docker-compose -f docker-compose.yml up -d
+            - restore_cache:
+          keys:
+            - $CIRCLE_PROJECT_REPONAME-{{ checksum "pom.xml" }}
+            - $CIRCLE_PROJECT_REPONAME-
+
+      - run: mvn dependency:go-offline compile compiler:testCompile
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: m2-{{ checksum "pom.xml" }}
+
+      - run:
+          name: Run UI Tests
+          command: mvn clean test -pl ui-compend
+          when: always
 
 workflows:
   regression:
