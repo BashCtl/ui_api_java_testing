@@ -43,8 +43,8 @@ jobs:
           name: Check Running Containers
           command: docker ps
       - run:
-          name: Check 4444 port
-          command: sudo netstat -tnlp
+          name: Check Port Listening
+          command: netstat -tnlp
 #      - run:
 #          name: Get Selenium Grid Status
 #          command: curl 'http://localhost:4444/status'
