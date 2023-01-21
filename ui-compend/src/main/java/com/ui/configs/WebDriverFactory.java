@@ -13,7 +13,7 @@ import java.net.URL;
 import static com.ui.configs.DriverOptions.*;
 
 public class WebDriverFactory {
-    private String GRID_URL = "http://127.0.0.1:4444";
+    private String GRID_URL = "http://localhost:4444";
     private final String GRID_KEY = "grid";
     private final String BROWSER_KEY = "browser";
 

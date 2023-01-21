@@ -8,6 +8,10 @@ jobs:
     docker:
       - image: cimg/openjdk:17.0-browsers
 
+    machine:
+      hosts:
+        localhost: 127.0.0.1
+
     working_directory: ~/ui-compend
 
     environment:
