@@ -40,7 +40,9 @@ jobs:
       - run:
           name: Check Running Containers
           command: docker ps
-
+      - run:
+          name: Check 4444 port
+          command: sudo ss -tunlp | grep 4444
       - run:
           name: Get Selenium Grid Status
           command: curl 'http://localhost:4444/status'
@@ -59,7 +61,7 @@ jobs:
 
       - run:
           name: Run UI Tests
-          command: mvn clean test -pl ui-compend
+          command: mvn clean test -pl ui-compend -e
           when: always
 
 workflows:
