@@ -39,7 +39,7 @@ jobs:
 
       - run:
           name: Get Selenium Grid Status
-          command: cURL GET 'http://localhost:4444/status'
+          command: curl GET 'http://localhost:4444/status'
 
 
       - restore_cache:
