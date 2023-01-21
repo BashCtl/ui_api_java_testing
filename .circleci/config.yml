@@ -8,9 +8,6 @@ jobs:
     docker:
       - image: cimg/openjdk:17.0-browsers
 
-    machine:
-      hosts:
-        localhost: 127.0.0.1
 
     working_directory: ~/ui-compend
 
@@ -40,6 +37,13 @@ jobs:
             sudo chown $USER:$USER -R .
             docker-compose -f docker-compose.yml up -d
             - restore_cache:
+
+      - run:
+          name: Get Selenium Grid Status
+          command: cURL GET 'http://localhost:4444/status'
+
+
+      - restore_cache:
           keys:
             - $CIRCLE_PROJECT_REPONAME-{{ checksum "pom.xml" }}
             - $CIRCLE_PROJECT_REPONAME-
