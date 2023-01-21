@@ -26,8 +26,10 @@ jobs:
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
       - run:
-          name: Verify Docker Compose Version
-          command: docker-compose --version
+          name: Verify Docker  And Docker Compose Version
+          command: |
+            docker-compose --version
+            docker --version
 
       - run:
           name: Listing dir
