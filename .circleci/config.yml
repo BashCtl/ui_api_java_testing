@@ -9,13 +9,15 @@ jobs:
       - image: cimg/openjdk:17.0-browsers
 
 
-    working_directory: ~/ui-compend
+    working_directory: ~/ui_api_testing
 
     environment:
       MAVEN_OPTS: -Xmx4200m -Xms1024m
 
     steps:
       - checkout
+      - setup_remote_docker:
+          docker_layer_caching: false
 
       - run:
           name: Ifconfig
@@ -29,9 +31,6 @@ jobs:
             curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
-
-#      - setup_remote_docker:
-#          docker_layer_caching: false
 
       - run:
           name: Docker Compose Up
