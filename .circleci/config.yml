@@ -32,10 +32,8 @@ jobs:
             docker --version
 
       - run:
-          name: Listing dir
-          command: | 
-            ls -l
-            ls -l ui-compend
+          name: Add User To The Docker Group
+          command: sudo usermod -aG docker ${USER}
 
       - run:
           name: Docker Compose Up
