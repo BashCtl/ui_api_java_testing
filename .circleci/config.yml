@@ -25,6 +25,8 @@ jobs:
             curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - setup_remote_docker:
+          docker_layer_caching: false
       - run:
           name: Verify Docker  And Docker Compose Version
           command: |
@@ -33,9 +35,7 @@ jobs:
 
       - run:
           name: Add User To The Docker Group
-          command: |
-            sudo systemctl status docker
-            sudo usermod -aG docker ${USER}
+          command: sudo usermod -aG docker ${USER}
 
       - run:
           name: Docker Compose Up
