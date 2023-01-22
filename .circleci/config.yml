@@ -5,8 +5,8 @@ orbs:
 
 jobs:
   ui-web-testing:
-#    docker:
-#      - image: cimg/openjdk:17.0-browsers
+    #    docker:
+    #      - image: cimg/openjdk:17.0-browsers
 
 
     working_directory: ~/ui_api_testing
