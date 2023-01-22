@@ -44,4 +44,4 @@ services:
   tests:
     image: cimg/openjdk:17.0-browsers
 #    working_dir: ./ui-compend
-    command: sh -c "pwd && ls -l && mvn clean test"
+    command: sh -c "pwd && cd ui_api_testing && ls -l && mvn clean test"
