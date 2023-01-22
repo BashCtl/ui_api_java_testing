@@ -47,11 +47,11 @@ jobs:
           name: Check Running Containers
           command: |
             pwd
-            ls -l
-            docker ps
+#            ls -l
+#            docker ps
             cd ui-compend
             docker-compose run tests || true
-            ls -l
+#            ls -l
       - run:
           name: Check Port Listening
           command: sudo netstat -tnlp
