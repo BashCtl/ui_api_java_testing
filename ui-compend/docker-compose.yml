@@ -40,3 +40,8 @@ services:
       - "4444:4444"
   ping:
     image: alpine/curl
+
+  tests:
+    image: cimg/openjdk:17.0-browsers
+#    working_dir: ./ui-compend
+    command: sh -c "pwd"

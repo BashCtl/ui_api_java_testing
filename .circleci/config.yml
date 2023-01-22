@@ -46,6 +46,8 @@ jobs:
       - run:
           name: Check Running Containers
           command: |
+            pwd
+            docker-compose run tests
             docker ps
             cd ui-compend
             ls -l
