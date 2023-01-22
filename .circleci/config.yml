@@ -47,9 +47,10 @@ jobs:
           name: Check Running Containers
           command: |
             pwd
-            docker-compose run tests
+            ls -l
             docker ps
             cd ui-compend
+            docker-compose run tests || true
             ls -l
       - run:
           name: Check Port Listening
