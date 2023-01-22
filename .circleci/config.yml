@@ -47,7 +47,6 @@ jobs:
             docker ps
             cd ui-compend
             ls -l
-            docker-compose run ping curl http://localhost:4444
       - run:
           name: Check Port Listening
           command: netstat -tnlp
