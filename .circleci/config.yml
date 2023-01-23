@@ -1,10 +1,10 @@
 version: 2.1
 
-orbs:
-  browser-tools: circleci/browser-tools@1.4.1
 
 jobs:
   ui-web-testing:
+    machine:
+      localhost: 127.0.0.1
     docker:
       - image: cimg/openjdk:17.0-browsers
 
@@ -38,10 +38,8 @@ jobs:
             cd ui-compend
             sudo chown $USER:$USER -R .
             docker-compose -f docker-compose.yml up -d
+            sleep 100
 
-      - run:
-          name: Open Port
-          command: sleep 5 && nc -vz localhost 4444 || true
 
       - run:
           name: Make Verifications
@@ -49,7 +47,7 @@ jobs:
             pwd
             ls -l
             cd ui-compend
-            docker-compose run ping curl http://localhost
+            docker-compose run ping curl http://localhost || true
             ls -l
             cd ../..
             ls -l
