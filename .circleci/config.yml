@@ -44,12 +44,12 @@ jobs:
           command: sleep 5 && nc -vz localhost 4444 || true
 
       - run:
-          name: Check Running Containers
+          name: Make Verifications
           command: |
             pwd
             ls -l
             cd ui-compend
-            docker-compose ping curl http://localhost
+            docker-compose -f docker-compose.yml ping curl http://localhost
             ls -l
             cd ../..
             ls -l
