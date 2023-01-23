@@ -49,6 +49,7 @@ jobs:
             pwd
             ls -l
             cd ui-compend
+            docker-compose ping curl http://localhost
             ls -l
             cd ../..
             ls -l
