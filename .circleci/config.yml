@@ -38,41 +38,27 @@ jobs:
             docker-compose -f docker-compose.yml up -d
             sleep 100
 
-
-      - run:
-          name: Make Verifications
-          command: |
-            pwd
-            ls -l
-            cd ui-compend
-            docker-compose run ping curl http://localhost || true
-            ls -l
-            cd ../..
-            ls -l
-
       - run:
           name: Check Port Listening
           command: sudo netstat -tnlp
+
+
+
+      - restore_cache:
+          keys:
+            - $CIRCLE_PROJECT_REPONAME-{{ checksum "pom.xml" }}
+            - $CIRCLE_PROJECT_REPONAME-
+
+      - run: mvn dependency:go-offline compile compiler:testCompile
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: m2-{{ checksum "pom.xml" }}
+
       - run:
-          name: Get Selenium Grid Status
-          command: curl 'http://localhost:4444/status' || true
-#
-#
-#      - restore_cache:
-#          keys:
-#            - $CIRCLE_PROJECT_REPONAME-{{ checksum "pom.xml" }}
-#            - $CIRCLE_PROJECT_REPONAME-
-#
-#      - run: mvn dependency:go-offline compile compiler:testCompile
-#      - save_cache:
-#          paths:
-#            - ~/.m2
-#          key: m2-{{ checksum "pom.xml" }}
-#
-#      - run:
-#          name: Run UI Tests
-#          command: mvn clean test -pl ui-compend -e
-#          when: always
+          name: Run UI Tests
+          command: mvn clean test -pl ui-compend -e
+          when: always
 
 workflows:
   regression:

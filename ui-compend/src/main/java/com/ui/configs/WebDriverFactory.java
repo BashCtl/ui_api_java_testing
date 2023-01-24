@@ -19,7 +19,7 @@ public class WebDriverFactory {
 
     public WebDriver getDriver() {
         final String browser = System.getProperty(BROWSER_KEY);
-        return Boolean.parseBoolean(System.getProperty(GRID_KEY, "true")) ? setRemoteWebDriver(browser)
+        return Boolean.parseBoolean(System.getProperty(GRID_KEY, "false")) ? setRemoteWebDriver(browser)
                 : getLocalDriver(browser);
     }
 
