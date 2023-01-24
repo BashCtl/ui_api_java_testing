@@ -1,2 +1,4 @@
 .idea
 target
+ui-compend/.allure
+ui-compend/logs
