@@ -1,9 +1,10 @@
 
-import com.ui.configs.WebDriverFactory;
+import configs.WebDriverFactory;
 import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import utils.listeners.TestListener;
@@ -44,10 +45,15 @@ public class BaseTest {
     @Test
     public void test() {
         log.info("Open page.");
-        driver.get("https:/sd/cddsompendiumdev.co.uk/");
+       openPage();
+        Assert.assertEquals(driver.getTitle(), "hi");
 
     }
 
+    @Step("Open main page")
+    private void openPage(){
+        driver.get("https://compendiumdev.co.uk/");
+    }
     @Description("Test example 2")
     @Test
     public void test2() {

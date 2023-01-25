@@ -1,4 +1,4 @@
-package com.ui.configs;
+package configs;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -10,7 +10,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static com.ui.configs.DriverOptions.*;
+import static configs.DriverOptions.*;
 
 public class WebDriverFactory {
     private String GRID_URL = "http://localhost:4444/";

@@ -1,5 +1,5 @@
 
-import com.ui.configs.WebDriverFactory;
+import configs.WebDriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 

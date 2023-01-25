@@ -1,4 +1,4 @@
-package com.ui.configs;
+package configs;
 
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeOptions;
