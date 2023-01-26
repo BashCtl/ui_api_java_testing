@@ -1,5 +1,9 @@
+package tests;
 
 import configs.WebDriverFactory;
+import entities.EntityProvider;
+import entities.EntityType;
+import entities.User;
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
@@ -7,12 +11,17 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
+import pages.HomePage;
 import utils.listeners.TestListener;
+
+import static entities.EntityType.USER;
 
 @Log4j2
 @Listeners({TestListener.class})
-public class BaseTest {
-    private WebDriver driver;
+public  abstract class BaseTest {
+    protected WebDriver driver;
+    protected HomePage homePage;
+    protected User user;
 
     @Parameters("browser")
     @BeforeClass(alwaysRun = true)
@@ -22,56 +31,25 @@ public class BaseTest {
 
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethod(ITestContext context) {
         log.info("Get WebDriver.");
         driver = new WebDriverFactory().getDriver();
+        user = EntityProvider.getEntity(USER);
         log.info("Set Context WebDriver Attribute");
         context.setAttribute("WebDriver", driver);
     }
 
-    @AfterMethod
-    public void afterMethod(){
+    @AfterMethod(alwaysRun = true)
+    public void afterMethod() {
         log.info("Quit WebDriver");
         driver.quit();
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void afterClass() {
 
     }
 
-    @Description("Test example 1")
-    @Test
-    public void test() {
-        log.info("Open page.");
-       openPage();
-        Assert.assertEquals(driver.getTitle(), "hi");
 
-    }
-
-    @Step("Open main page")
-    private void openPage(){
-        driver.get("https://compendiumdev.co.uk/");
-    }
-    @Description("Test example 2")
-    @Test
-    public void test2() {
-
-        driver.get("https://compendiumdev.co.uk/");
-    }
-
-    @Description("Test example 3")
-    @Test
-    public void tes3() {
-
-        driver.get("https://compendiumdev.co.uk/");
-    }
-
-    @Description("Test example 4")
-    @Test
-    public void test4() {
-
-        driver.get("https://compendiumdev.co.uk/");
-    }
 }

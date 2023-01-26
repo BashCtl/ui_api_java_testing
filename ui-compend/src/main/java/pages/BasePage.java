@@ -11,7 +11,7 @@ public class BasePage {
 
     protected WebDriver driver;
     protected WebDriverWait wait;
-    protected final int WAIT_SECONDS = 10;
+    private final int WAIT_SECONDS = 10;
 
 
 
@@ -19,6 +19,10 @@ public class BasePage {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(WAIT_SECONDS));
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, WAIT_SECONDS), this);
+    }
+
+    protected String getPageTitle(){
+        return driver.getTitle();
     }
 
 

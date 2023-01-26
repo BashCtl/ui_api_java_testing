@@ -4,17 +4,12 @@
     <listeners>
         <listener class-name="utils.listeners.TestListener"/>
     </listeners>
-    <test name="Test1" >
+    <test name="Login tests" >
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="BaseTest" />
+            <class name="tests.LoginTest" />
         </classes>
     </test>
 
-    <test name="Test2">
-        <parameter name="browser" value="chrome"/>
-        <classes>
-            <class name="BaseTest2"/>
-        </classes>
-    </test>
+
 </suite>

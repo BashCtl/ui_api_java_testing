@@ -22,7 +22,7 @@
         <allure.testng.version>2.20.1</allure.testng.version>
         <aspectj.version>1.9.19</aspectj.version>
         <allure.maven.version>2.12.0</allure.maven.version>
-        <suite.name>testng.xml</suite.name>
+        <suite.name>login.xml</suite.name>
     </properties>
 
     <dependencies>
@@ -75,6 +75,7 @@
                     </suiteXmlFiles>
                     <systemPropertyVariables>
                         <allure.results.directory>target/allure-results</allure.results.directory>
+                        <env>QA</env>
                     </systemPropertyVariables>
                 </configuration>
                 <dependencies>
