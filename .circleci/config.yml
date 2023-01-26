@@ -89,7 +89,7 @@ jobs:
 
       - run:
           name: Generate Allure report
-          command: mvn allure:report
+          command: mvn allure:report -pl ui-compend
           when: always
 
       - store_artifacts:
