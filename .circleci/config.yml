@@ -50,7 +50,7 @@ jobs:
 
       - run:
           name: Make history dir for allure reports
-          command: mkdir target/allure-results/history
+          command: mkdir ui-compend/target/allure-results/history
           when: always
 
       - run:
@@ -67,25 +67,25 @@ jobs:
           name: Rename and copy history artifacts to allure-result
           command: |
             mv history.json?circle-token=$artifacts history.json && mv history-trend.json?circle-token=$artifacts history-trend.json || true
-            cp history.json target/allure-results/history/ && cp history-trend.json target/allure-results/history/ || true
+            cp history.json ui-compend/target/allure-results/history/ && cp history-trend.json ui-compend/target/allure-results/history/ || true
             mv categories-trend.json?circle-token=$artifacts categories-trend.json && mv duration-trend.json?circle-token=$artifacts duration-trend.json || true
-            cp categories-trend.json target/allure-results/history/ && cp duration-trend.json target/allure-results/history/ || true
+            cp categories-trend.json ui-compend/target/allure-results/history/ && cp duration-trend.json ui-compend/target/allure-results/history/ || true
             mv retry-trend.json?circle-token=$artifacts retry-trend.json || true
-            cp retry-trend.json target/allure-results/history/ || true
+            cp retry-trend.json ui-compend/target/allure-results/history/ || true
           when: always
 
       - run:
           name: Save test results
           command: |
-            mkdir -p ~/test-results/junit/
-            find . -type f -regex ".*/target/surefire-reports/junitreports/.*xml" -exec cp {} ~/test-results/junit/ \;
+            mkdir -p ~/ui-compend/test-results/junit/
+            find . -type f -regex ".*/ui-compend/target/surefire-reports/junitreports/.*xml" -exec cp {} ~/test-results/junit/ \;
           when: always
 
       - store_test_results:
-          path: ~/test-results
+          path: ~/ui-compend/test-results
 
       - store_artifacts:
-          path: ~/test-results/junit
+          path: ~/ui-compend/test-results/junit
 
       - run:
           name: Generate Allure report
@@ -93,7 +93,7 @@ jobs:
           when: always
 
       - store_artifacts:
-          path: target/site/allure-maven-plugin
+          path: ui-compend/target/site/allure-maven-plugin
           destination: Allure
 
 
