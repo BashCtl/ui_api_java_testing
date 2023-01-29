@@ -1,5 +1,10 @@
 {
-  "username": "Jack Gomez",
+  "firstName": "John",
+  "lastName": "Wick",
+  "email": "johnwick@test.com",
+  "dialCode": 44,
+  "phoneNumber": "555-34-55",
+  "mobilePhone": "1802345234",
   "password": "fuckingpassword",
   "role": "CUSTOMER"
 }

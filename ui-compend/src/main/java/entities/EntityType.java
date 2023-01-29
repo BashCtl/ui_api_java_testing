@@ -4,7 +4,8 @@ import lombok.Getter;
 
 public enum EntityType {
 
-    USER("user.json", User.class);
+    USER("user.json", User.class),
+    BILLING_ADDRESS("billing_address.json", BillingAddress.class);
 
     @Getter
     private final String fileType;

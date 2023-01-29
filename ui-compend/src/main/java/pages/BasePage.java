@@ -7,9 +7,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class BasePage {
+import static utils.PropsLoader.loadProperties;
 
-    protected WebDriver driver;
+public class BasePage {
+    protected final String ENV_URL = loadProperties()
+            .getProperty(System.getProperty("env", "QA"));
+    public WebDriver driver;
     protected WebDriverWait wait;
     private final int WAIT_SECONDS = 10;
 

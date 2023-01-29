@@ -21,15 +21,5 @@ public class LoginTest extends BaseTest {
         homeSteps = new HomeSteps(driver);
     }
 
-    @Test
-    public void loginIntoApp() {
-        loginSteps.openPage()
-                .enterUsername(user.getUsername())
-                .enterPassword(user.getPassword())
-                .clickSignInBtn();
-        String username = homeSteps.getUserName();
-        String userRole = homeSteps.getUserRole();
-        assertEquals(username, user.getUsername());
-        assertEquals(userRole, user.getRole());
-    }
+
 }
