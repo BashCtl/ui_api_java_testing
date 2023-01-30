@@ -1,14 +1,18 @@
 package pages;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
 import static utils.PropsLoader.loadProperties;
 
+@Slf4j
 public class BasePage {
     protected final String ENV_URL = loadProperties()
             .getProperty(System.getProperty("env", "QA"));
@@ -28,5 +32,9 @@ public class BasePage {
         return driver.getTitle();
     }
 
+    public WebElement waitUntilElementVisible(WebElement element){
+        log.info("Waiting until element is visible.");
+        return wait.until(ExpectedConditions.visibilityOf(element));
+    }
 
 }

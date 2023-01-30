@@ -166,23 +166,24 @@ public class RegisterSteps extends BaseSteps {
     }
 
     @Step("User checks recaptcha checkbox.")
-    public RegisterSteps checkRecaptcha(){
+    public RegisterSteps checkRecaptcha() {
         log.info("Click recaptcha checkbox.");
         registerPage.getRecaptchaCheckbox().click();
         return this;
     }
 
     @Step("User pushes 'Register' button.")
-    public RegisterSteps clickRegisterBtn(){
+    public RegisterSteps clickRegisterBtn() {
         log.info("Click 'Register' button.");
         registerPage.getRegisterBtn().click();
         return this;
     }
 
     @Step("Get error label text.")
-    public String getErrorText(){
+    public String getErrorText() {
         log.info("Getting error text.");
-        return registerPage.getErrorLabel().getText();
+        return registerPage.waitUntilElementVisible(
+                registerPage.getErrorLabel()).getText();
     }
 
 }
