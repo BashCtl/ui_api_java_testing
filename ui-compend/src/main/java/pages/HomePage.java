@@ -1,18 +1,14 @@
 package pages;
 
-import io.qameta.allure.Step;
 import lombok.Getter;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static utils.PropsLoader.loadProperties;
-
-@Log4j2
+@Slf4j
 @Getter
 public class HomePage extends BasePage {
-
 
 
     public HomePage(WebDriver driver) {

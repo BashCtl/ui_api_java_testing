@@ -1,13 +1,13 @@
 package pages;
 
 import lombok.Getter;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 @Getter
-@Log4j2
+@Slf4j
 public class RegisterPage extends BasePage{
 
     private final String  REGISTER_URL = ENV_URL+"/register.php";
@@ -72,6 +72,9 @@ public class RegisterPage extends BasePage{
 
     @FindBy(id = "recaptcha-anchor")
     private WebElement recaptchaCheckbox;
+
+    @FindBy(xpath = "//*[contains(@class,'alert-danger')]//li")
+    private WebElement errorLabel;
 
     private String dataDailCodeXpath = "//li[@class='country' and @data-dial-code='%s']";
 

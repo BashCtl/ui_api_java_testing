@@ -2,10 +2,11 @@ package steps;
 
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import pages.HomePage;
 
-@Log4j2
+@Slf4j
 public class HomeSteps extends BaseSteps {
 
     private HomePage homePage;

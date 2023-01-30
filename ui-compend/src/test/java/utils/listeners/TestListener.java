@@ -2,6 +2,7 @@ package utils.listeners;
 
 import io.qameta.allure.Allure;
 import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +13,7 @@ import org.testng.ITestResult;
 import java.io.ByteArrayInputStream;
 import java.time.LocalDateTime;
 
-@Log4j2
+@Slf4j
 public class TestListener implements ITestListener {
 
     @Override

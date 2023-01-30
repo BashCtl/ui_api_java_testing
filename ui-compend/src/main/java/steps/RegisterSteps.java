@@ -1,13 +1,12 @@
 package steps;
 
 import io.qameta.allure.Step;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import pages.RegisterPage;
 
-@Log4j2
+@Slf4j
 public class RegisterSteps extends BaseSteps {
 
     private RegisterPage registerPage;
@@ -157,13 +156,33 @@ public class RegisterSteps extends BaseSteps {
         return this;
     }
 
-    @Step("User confirms password: {passConfirm}")
+    @Step("User confirms password: {passConfirm}.")
     public RegisterSteps confirmPassword(String passConfirm) {
         log.info("Clear confirm password field.");
         registerPage.getConfirmPassInput().clear();
-        log.info("Fill password confirmation field: {}", passConfirm);
+        log.info("Fill password confirmation field: {}.", passConfirm);
         registerPage.getConfirmPassInput().sendKeys(passConfirm);
         return this;
+    }
+
+    @Step("User checks recaptcha checkbox.")
+    public RegisterSteps checkRecaptcha(){
+        log.info("Click recaptcha checkbox.");
+        registerPage.getRecaptchaCheckbox().click();
+        return this;
+    }
+
+    @Step("User pushes 'Register' button.")
+    public RegisterSteps clickRegisterBtn(){
+        log.info("Click 'Register' button.");
+        registerPage.getRegisterBtn().click();
+        return this;
+    }
+
+    @Step("Get error label text.")
+    public String getErrorText(){
+        log.info("Getting error text.");
+        return registerPage.getErrorLabel().getText();
     }
 
 }

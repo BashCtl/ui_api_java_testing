@@ -1,5 +1,7 @@
 package tests;
 
+import com.github.javafaker.service.FakeValuesService;
+import com.github.javafaker.service.RandomService;
 import configs.WebDriverFactory;
 import entities.BillingAddress;
 import entities.EntityProvider;
@@ -8,6 +10,7 @@ import entities.User;
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.ITestContext;
@@ -15,16 +18,22 @@ import org.testng.annotations.*;
 import pages.HomePage;
 import utils.listeners.TestListener;
 
+import java.util.Locale;
+
 import static entities.EntityType.BILLING_ADDRESS;
 import static entities.EntityType.USER;
 
-@Log4j2
+@Slf4j
 @Listeners({TestListener.class})
-public  abstract class BaseTest {
+public abstract class BaseTest {
     protected WebDriver driver;
     protected HomePage homePage;
     protected User user;
     protected BillingAddress billingAddress;
+
+    protected FakeValuesService fakeValuesService = new FakeValuesService(
+            new Locale("en-US"),
+            new RandomService());
 
     @Parameters("browser")
     @BeforeClass(alwaysRun = true)
