@@ -17,7 +17,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <selenium.version>4.7.2</selenium.version>
         <webdriver.manager.version>5.3.1</webdriver.manager.version>
-        <testng.version>7.7.1</testng.version>
         <maven.surfire.version>3.0.0-M8</maven.surfire.version>
         <allure.testng.version>2.20.1</allure.testng.version>
         <aspectj.version>1.9.19</aspectj.version>
@@ -36,13 +35,6 @@
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>${webdriver.manager.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
