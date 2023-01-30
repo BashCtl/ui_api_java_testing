@@ -18,7 +18,7 @@ public class BasePage {
             .getProperty(System.getProperty("env", "QA"));
     public WebDriver driver;
     protected WebDriverWait wait;
-    private final int WAIT_SECONDS = 10;
+    private final int WAIT_SECONDS = 15;
 
 
 
