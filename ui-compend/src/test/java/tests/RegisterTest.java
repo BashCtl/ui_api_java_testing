@@ -38,6 +38,7 @@ public class RegisterTest extends BaseTest{
                 .enterMobilePhone(user.getMobilePhone())
                 .enterPassword(user.getPassword())
                 .confirmPassword(user.getPassword())
+//                .checkRecaptcha()
                 .clickRegisterBtn();
         String error = registerSteps.getErrorText();
         Assert.assertEquals(error, "Please complete the captcha and try again.");

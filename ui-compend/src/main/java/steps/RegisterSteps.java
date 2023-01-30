@@ -167,8 +167,10 @@ public class RegisterSteps extends BaseSteps {
 
     @Step("User checks recaptcha checkbox.")
     public RegisterSteps checkRecaptcha() {
+        registerPage.switchToFrameByElement(registerPage.getRecaptchaIframe());
         log.info("Click recaptcha checkbox.");
-        registerPage.getRecaptchaCheckbox().click();
+        registerPage.jsElementClick(registerPage.getRecaptchaCheckbox());
+        registerPage.switchToDefaultContent();
         return this;
     }
 

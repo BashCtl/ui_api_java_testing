@@ -70,8 +70,11 @@ public class RegisterPage extends BasePage{
     @FindBy(xpath = "//input[@value='Register']")
     private WebElement registerBtn;
 
-    @FindBy(id = "recaptcha-anchor")
+    @FindBy(xpath = "//div[@class='recaptcha-checkbox-checkmark']")
     private WebElement recaptchaCheckbox;
+
+    @FindBy(xpath = "//iframe[@title='reCAPTCHA']")
+    private WebElement recaptchaIframe;
 
     @FindBy(xpath = "//*[contains(@class,'alert-danger')]//li")
     private WebElement errorLabel;

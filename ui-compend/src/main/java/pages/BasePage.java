@@ -1,6 +1,7 @@
 package pages;
 
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -36,5 +37,23 @@ public class BasePage {
         log.info("Waiting until element is visible.");
         return wait.until(ExpectedConditions.visibilityOf(element));
     }
+
+    public void switchToFrameByElement(WebElement iframe){
+        log.info("Switch to iframe by element: {}", iframe);
+        driver.switchTo().frame(iframe);
+    }
+
+    public void  switchToDefaultContent(){
+        log.info("Switch to default content.");
+        driver.switchTo().defaultContent();
+    }
+
+    public void jsElementClick(WebElement element){
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        log.info("Executing JS click on element.");
+        executor.executeScript("arguments[0].click();", element);
+    }
+
+
 
 }
