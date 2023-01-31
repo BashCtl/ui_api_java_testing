@@ -1,7 +1,6 @@
 package steps;
 
 import io.qameta.allure.Step;
-import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
@@ -23,12 +22,12 @@ public class LoginSteps extends BaseSteps {
         return this;
     }
 
-    @Step("User enters username: {username}")
-    public LoginSteps enterUsername(String username) {
-        log.info("Clear username input.");
-        loginPage.getUsernameInput().clear();
-        log.info("Enter username: {}", username);
-        loginPage.getUsernameInput().sendKeys(username);
+    @Step("User enters email: {email}")
+    public LoginSteps enterEmail(String email) {
+        log.info("Clear email input.");
+        loginPage.getEmailInput().clear();
+        log.info("Enter email: {}", email);
+        loginPage.getEmailInput().sendKeys(email);
         return this;
     }
 
@@ -41,11 +40,24 @@ public class LoginSteps extends BaseSteps {
         return this;
     }
 
-    @Step("User clicks 'Sign in' button")
-    public LoginSteps clickSignInBtn() {
-        log.info("Click 'Sing in' button.");
-        loginPage.getSingInBtn().click();
+    @Step("User clicks 'Remember Me' checkbox.")
+    public LoginSteps clickRememberMeCheckbox() {
+        log.info("Click 'Remember Me checkbox.");
+        loginPage.getRememberCheckbox().click();
         return this;
+    }
+
+    @Step("User clicks 'Login' button")
+    public LoginSteps clickLoginBtn() {
+        log.info("Click 'Login' button.");
+        loginPage.getLoginBtn().click();
+        return this;
+    }
+
+    @Step("Get error message.")
+    public String getErrorMsg(){
+        log.info("Getting error message.");
+        return loginPage.getErrorMsg().getText();
     }
 
 

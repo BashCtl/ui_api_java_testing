@@ -21,7 +21,7 @@
         <allure.testng.version>2.20.1</allure.testng.version>
         <aspectj.version>1.9.19</aspectj.version>
         <allure.maven.version>2.12.0</allure.maven.version>
-        <suite.name>register.xml</suite.name>
+        <suite.name>regression.xml</suite.name>
     </properties>
 
     <dependencies>

@@ -1,47 +1,37 @@
 package pages;
 
-import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static utils.PropsLoader.loadProperties;
-
 @Getter
 public class LoginPage extends BasePage {
 
-    private final String ENV_URL = loadProperties()
-            .getProperty(System.getProperty("env", "QA"));
+    private final String LOGIN_ULR = ENV_URL + "/login";
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
-    @FindBy(id = "username")
-    private WebElement usernameInput;
+    @FindBy(id = "inputEmail")
+    private WebElement emailInput;
 
-    @FindBy(id = "password")
+    @FindBy(id = "inputPassword")
     private WebElement passwordInput;
 
-    @FindBy(id = "log-in")
-    private WebElement singInBtn;
+    @FindBy(id = "login")
+    private WebElement loginBtn;
 
     @FindBy(className = "form-check-input")
     private WebElement rememberCheckbox;
 
+    @FindBy(xpath = "//*[@class='alert alert-danger']")
+    private WebElement errorMsg;
 
-    @FindBy(xpath = "//a[contains(src,'twitter')]")
-    private WebElement twitterLink;
-
-    @FindBy(xpath = "//a[contains(src, 'facebook')]")
-    private WebElement facebookLink;
-
-    @FindBy(xpath = "//a[contains(src,'linkedin')]")
-    private WebElement linkedinLink;
 
     public LoginPage openPage() {
-        driver.get(ENV_URL);
+        driver.get(LOGIN_ULR);
         return this;
     }
 }
