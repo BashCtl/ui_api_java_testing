@@ -14,6 +14,7 @@ jobs:
 
     steps:
       - checkout
+
       - setup_remote_docker:
           docker_layer_caching: false
 
@@ -55,7 +56,13 @@ jobs:
 
       - run:
           name: Get previous artifact links
-          command: curl https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_PREVIOUS_BUILD_NUM/artifacts?circle-token=$artifacts | grep -o 'https:\/\/[^"]*Allure\/history\/.*\.json' > artifacts.txt || true
+          command: |
+            echo $CIRCLE_PROJECT_USERNAME
+            echo $CIRCLE_PROJECT_REPONAME
+            echo $CIRCLE_PREVIOUS_BUILD_NUM
+            curl https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_PREVIOUS_BUILD_NUM/artifacts?circle-token=$artifacts | grep -o 'https:\/\/[^"]*Allure\/history\/.*\.json' > artifacts.txt || true
+            pwd
+            ls -l
           when: always
 
       - run: cat artifacts.txt || true
@@ -72,8 +79,7 @@ jobs:
             ls -l ui-compend
             cd ..
             ls -l
-            ls -l /project
-            ls -l /bin
+            
             mv history.json?circle-token=$artifacts history.json && mv history-trend.json?circle-token=$artifacts history-trend.json || true
             cp history.json ui-compend/target/allure-results/history/ && cp history-trend.json ui-compend/target/allure-results/history/ || true
             mv categories-trend.json?circle-token=$artifacts categories-trend.json && mv duration-trend.json?circle-token=$artifacts duration-trend.json || true
