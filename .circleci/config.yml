@@ -57,11 +57,8 @@ jobs:
       - run:
           name: Get previous artifact links
           command: |
-            echo $CIRCLE_BUILD_NUM
-            echo $CIRCLE_PROJECT_USERNAME
-            echo $CIRCLE_PROJECT_REPONAME
+            echo $CIRCLE_API_TOKEN
             CIRCLE_PREVIOUS_BUILD_NUM= expr $CIRCLE_BUILD_NUM - 1
-            echo $CIRCLE_PREVIOUS_BUILD_NUM
             curl https://circleci.com/api/v2/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_PREVIOUS_BUILD_NUM/artifacts?circle-token=$artifacts | grep -o 'https:\/\/[^"]*Allure\/history\/.*\.json' > artifacts.txt || true
             pwd
             ls -l
