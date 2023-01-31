@@ -59,7 +59,7 @@ jobs:
           command: |
             echo $CIRCLE_API_TOKEN
             CIRCLE_PREVIOUS_BUILD_NUM= expr $CIRCLE_BUILD_NUM - 1
-            curl https://circleci.com/api/v2/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_PREVIOUS_BUILD_NUM/artifacts?circle-token=$artifacts | grep -o 'https:\/\/[^"]*Allure\/history\/.*\.json' > artifacts.txt || true
+            curl https://circleci.com/api/v2/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_PREVIOUS_BUILD_NUM/artifacts?circle-token=$CIRCLE_API_TOKEN | grep -o 'https:\/\/[^"]*Allure\/history\/.*\.json' > artifacts.txt || true
             pwd
             ls -l
           when: always
@@ -68,7 +68,7 @@ jobs:
 
       - run:
           name: Download artifacts history
-          command: <artifacts.txt xargs -P4 -I % wget $?circle-token=$artifacts
+          command: <artifacts.txt xargs -P4 -I % wget $?circle-token=$CIRCLE_API_TOKEN
           when: always
 
       - run:
@@ -79,11 +79,11 @@ jobs:
             cd ..
             ls -l
             
-            mv history.json?circle-token=$artifacts history.json && mv history-trend.json?circle-token=$artifacts history-trend.json || true
+            mv history.json?circle-token=$CIRCLE_API_TOKEN history.json && mv history-trend.json?circle-token=$CIRCLE_API_TOKEN history-trend.json || true
             cp history.json ui-compend/target/allure-results/history/ && cp history-trend.json ui-compend/target/allure-results/history/ || true
-            mv categories-trend.json?circle-token=$artifacts categories-trend.json && mv duration-trend.json?circle-token=$artifacts duration-trend.json || true
+            mv categories-trend.json?circle-token=$CIRCLE_API_TOKEN categories-trend.json && mv duration-trend.json?circle-token=$CIRCLE_API_TOKEN duration-trend.json || true
             cp categories-trend.json ui-compend/target/allure-results/history/ && cp duration-trend.json ui-compend/target/allure-results/history/ || true
-            mv retry-trend.json?circle-token=$artifacts retry-trend.json || true
+            mv retry-trend.json?circle-token=$CIRCLE_API_TOKEN retry-trend.json || true
             cp retry-trend.json ui-compend/target/allure-results/history/ || true
           when: always
 
