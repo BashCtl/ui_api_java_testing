@@ -68,6 +68,9 @@ jobs:
           command: |
             pwd
             ls -l ui-compend
+            cd ..
+            ls -l
+            find . history*
             mv history.json?circle-token=$artifacts history.json && mv history-trend.json?circle-token=$artifacts history-trend.json || true
             cp history.json ui-compend/target/allure-results/history/ && cp history-trend.json ui-compend/target/allure-results/history/ || true
             mv categories-trend.json?circle-token=$artifacts categories-trend.json && mv duration-trend.json?circle-token=$artifacts duration-trend.json || true
