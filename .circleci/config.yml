@@ -114,7 +114,7 @@ jobs:
           command: | 
             ls -l ui-compend/target/site/allure-maven-plugin || true
             pwd
-            ls -l
+            ls -l ui-compend/target/site/allure-maven-plugin || true
 
 
 
