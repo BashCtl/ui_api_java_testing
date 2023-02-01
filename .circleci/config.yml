@@ -109,6 +109,12 @@ jobs:
           path: ui-compend/target/site/allure-maven-plugin
           destination: Allure
 
+      - run:
+          name: Check artifacts
+          command: | 
+            ls -l ui-compend/target/site/allure-maven-plugin || true
+            pwd
+            ls -l
 
 
 
