@@ -59,7 +59,7 @@ jobs:
           command: |
             echo $CIRCLE_API_TOKEN
             CIRCLE_PREVIOUS_BUILD_NUM= expr $CIRCLE_BUILD_NUM - 1
-            curl https://circleci.com/api/v2/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_PREVIOUS_BUILD_NUM/artifacts?circle-token=$CIRCLE_API_TOKEN | grep -o 'https:\/\/[^"]*Allure\/history\/.*\.json' > artifacts.txt || true
+            curl https://circleci.com/api/v2/project/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_PREVIOUS_BUILD_NUM/artifacts?circle-token=$CIRCLE_API_TOKEN | grep -o 'https:\/\/[^"]*Allure\/history\/.*\.json' > artifacts.txt || true
             pwd
             ls -l
           when: always
@@ -82,7 +82,7 @@ jobs:
             cp categories-trend.json ui-compend/target/allure-results/history/ && cp duration-trend.json ui-compend/target/allure-results/history/ || true
             mv retry-trend.json?circle-token=$CIRCLE_API_TOKEN retry-trend.json || true
             cp retry-trend.json ui-compend/target/allure-results/history/ || true
-            ls -l ui-compend/target || true
+            ls -l ui-compend/target/allure-results || true
           when: always
 
       - run:
