@@ -82,7 +82,7 @@ jobs:
             cp categories-trend.json ui-compend/target/allure-results/history/ && cp duration-trend.json ui-compend/target/allure-results/history/ || true
             mv retry-trend.json?circle-token=$CIRCLE_API_TOKEN retry-trend.json || true
             cp retry-trend.json ui-compend/target/allure-results/history/ || true
-            ls -l ui-compend/target/allure-results/history/ || true
+            ls -l ui-compend/target/site/allure-maven-plugin/history || true
           when: always
 
       - run:
