@@ -73,13 +73,9 @@ jobs:
       - run:
           name: Rename and copy history artifacts to allure-result
           command: |
-            pwd
-            ls -l ui-compend         
-            mv history.json?circle-token=$CIRCLE_API_TOKEN history.json && mv history-trend.json?circle-token=$CIRCLE_API_TOKEN history-trend.json || true
+            pwd        
             cp history.json ui-compend/target/allure-results/history/ && cp history-trend.json ui-compend/target/allure-results/history/ || true
-            mv categories-trend.json?circle-token=$CIRCLE_API_TOKEN categories-trend.json && mv duration-trend.json?circle-token=$CIRCLE_API_TOKEN duration-trend.json || true
             cp categories-trend.json ui-compend/target/allure-results/history/ && cp duration-trend.json ui-compend/target/allure-results/history/ || true
-            mv retry-trend.json?circle-token=$CIRCLE_API_TOKEN retry-trend.json || true
             cp retry-trend.json ui-compend/target/allure-results/history/ || true
             ls -l ui-compend/target/allure-results/history || true
           when: always
