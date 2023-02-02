@@ -67,7 +67,7 @@ jobs:
 
       - run:
           name: Download artifacts history
-          command: <artifacts.txt xargs -P4 -I % wget --header="Circle-Token:$CIRCLE_API_TOKEN"
+          command: <artifacts.txt xargs -P4 -I % wget --header="Circle-Token:$CIRCLE_API_TOKEN" $
           when: always
 
       - run:
