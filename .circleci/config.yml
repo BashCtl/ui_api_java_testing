@@ -60,7 +60,8 @@ jobs:
             echo $CIRCLE_PROJECT_USERNAME
             echo $CIRCLE_PROJECT_REPONAME
             CIRCLE_PREVIOUS_BUILD_NUM= expr $CIRCLE_BUILD_NUM - 1
-            curl https://circleci.com/api/v2/project/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_PREVIOUS_BUILD_NUM/artifacts?circle-token=$CIRCLE_API_TOKEN | grep -o 'https:\/\/[^"]*Allure\/history\/.*\.json' > artifacts.txt || true
+            echo "Circle-Token:$CIRCLE_API_TOKEN"
+            curl -H "Circle-Token:$CIRCLE_API_TOKEN" https://circleci.com/api/v2/project/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_PREVIOUS_BUILD_NUM/artifacts | grep -o 'https:\/\/[^"]*Allure\/history\/.*\.json' > artifacts.txt || true
             pwd
             ls -l
           when: always
