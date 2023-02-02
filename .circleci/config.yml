@@ -60,6 +60,8 @@ jobs:
             echo $CIRCLE_PROJECT_USERNAME
             echo $CIRCLE_PROJECT_REPONAME
             CIRCLE_PREVIOUS_BUILD_NUM= expr $CIRCLE_BUILD_NUM - 1
+            echo "Previous build num: $CIRCLE_PREVIOUS_BUILD_NUM"
+            echo https://circleci.com/api/v2/project/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_PREVIOUS_BUILD_NUM/artifacts
             echo "Circle-Token:$CIRCLE_API_TOKEN"
             curl -H "Circle-Token:$CIRCLE_API_TOKEN" https://circleci.com/api/v2/project/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_PREVIOUS_BUILD_NUM/artifacts > art.txt
             cat art.txt
