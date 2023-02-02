@@ -9,6 +9,7 @@
     <suite-files>
         <suite-file path="login.xml"/>
         <suite-file path="register.xml"/>
+        <suite-file path="installation.xml"/>
     </suite-files>
 
 </suite>
