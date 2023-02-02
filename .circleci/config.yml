@@ -60,19 +60,14 @@ jobs:
             echo $CIRCLE_PROJECT_USERNAME
             echo $CIRCLE_PROJECT_REPONAME
             CIRCLE_PREVIOUS_BUILD_NUM=`expr $CIRCLE_BUILD_NUM - 1`
-            echo https://circleci.com/api/v2/project/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_PREVIOUS_BUILD_NUM/artifacts
-            curl -H "Circle-Token:$CIRCLE_API_TOKEN" https://circleci.com/api/v2/project/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_PREVIOUS_BUILD_NUM/artifacts > art.txt
-            cat art.txt
             curl -H "Circle-Token:$CIRCLE_API_TOKEN" https://circleci.com/api/v2/project/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_PREVIOUS_BUILD_NUM/artifacts | grep -o 'https:\/\/[^"]*Allure\/history\/.*\.json' > artifacts.txt || true
-            pwd
-            ls -l
           when: always
 
       - run: cat artifacts.txt || true
 
       - run:
           name: Download artifacts history
-          command: <artifacts.txt xargs -P4 -I % wget $?circle-token=$CIRCLE_API_TOKEN
+          command: <artifacts.txt xargs -P4 -I % wget --header="Circle-Token:$CIRCLE_API_TOKEN"
           when: always
 
       - run:
