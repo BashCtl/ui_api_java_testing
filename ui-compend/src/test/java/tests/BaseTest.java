@@ -1,5 +1,6 @@
 package tests;
 
+import com.github.javafaker.Faker;
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
 import configs.WebDriverFactory;
@@ -27,6 +28,8 @@ public abstract class BaseTest {
     protected FakeValuesService fakeValuesService = new FakeValuesService(
             new Locale("en-US"),
             new RandomService());
+
+    protected Faker faker = new Faker();
 
     @Parameters("browser")
     @BeforeClass(alwaysRun = true)
