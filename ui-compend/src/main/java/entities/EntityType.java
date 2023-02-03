@@ -6,7 +6,8 @@ public enum EntityType {
 
     USER("user.json", User.class),
     BILLING_ADDRESS("billing_address.json", BillingAddress.class),
-    INSTALLATION("installation.json", Installation.class);
+    INSTALLATION("installation.json", Installation.class),
+    LICENSE("license.json", License.class);
 
     @Getter
     private final String fileType;

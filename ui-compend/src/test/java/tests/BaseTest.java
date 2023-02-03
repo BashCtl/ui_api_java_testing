@@ -5,6 +5,7 @@ import com.github.javafaker.service.RandomService;
 import configs.WebDriverFactory;
 import entities.BillingAddress;
 import entities.Installation;
+import entities.License;
 import entities.User;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
@@ -21,8 +22,8 @@ public abstract class BaseTest {
     protected WebDriver driver;
     protected User user;
     protected BillingAddress billingAddress;
-
     protected Installation installation;
+    protected License license;
 
     protected FakeValuesService fakeValuesService = new FakeValuesService(
             new Locale("en-US"),
@@ -43,6 +44,7 @@ public abstract class BaseTest {
         user = getEntity(USER);
         billingAddress = getEntity(BILLING_ADDRESS);
         installation = getEntity(INSTALLATION);
+        license = getEntity(LICENSE);
         log.info("Set Context WebDriver Attribute");
         context.setAttribute("WebDriver", driver);
     }

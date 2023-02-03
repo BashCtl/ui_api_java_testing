@@ -10,6 +10,7 @@
         <suite-file path="login.xml"/>
         <suite-file path="register.xml"/>
         <suite-file path="installation.xml"/>
+        <suite-file path="license.xml"/>
     </suite-files>
 
 </suite>
