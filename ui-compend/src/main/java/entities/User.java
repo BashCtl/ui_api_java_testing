@@ -13,4 +13,6 @@ public class User implements Entity{
     private String mobilePhone;
     private String password;
     private String role;
+    private String subject;
+    private String message;
 }
