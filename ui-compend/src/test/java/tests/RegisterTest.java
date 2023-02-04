@@ -1,49 +1,21 @@
 package tests;
 
 import io.qameta.allure.Description;
-import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import steps.RegisterSteps;
 
 public class RegisterTest extends BaseTest {
+
     private RegisterSteps registerSteps;
-    private String email;
-    private String firstName;
-    private String lastName;
-    private int phoneCode;
 
-    private String phoneNumber;
-
-    private String companyName;
-    private String firstAddress;
-    private String secondAddress;
-    private String city;
-    private String state;
-    private String postCode;
-    private String country;
-    private String mobilePhone;
-    private String password;
 
     @BeforeMethod(alwaysRun = true)
     @Override
     public void beforeMethod(ITestContext context) {
         super.beforeMethod(context);
         registerSteps = new RegisterSteps(driver);
-        email = fakeValuesService.bothify("????###@mail.test");
-        firstName = faker.name().firstName();
-        lastName = faker.name().lastName();
-        phoneCode = user.getDialCode();
-        phoneNumber = faker.phoneNumber().subscriberNumber();
-        companyName = faker.company().name();
-        firstAddress = faker.address().streetAddress();
-        secondAddress = faker.address().secondaryAddress();
-        city = faker.address().city();
-        postCode = faker.address().zipCode();
-        mobilePhone = faker.phoneNumber().cellPhone();
-        password = faker.internet().password();
-
     }
 
     @Description("User Registration Without Checking Captcha Checkbox.")

@@ -25,6 +25,19 @@ public abstract class BaseTest {
 
     protected Mobile mobile;
 
+    // Test variables
+    protected String email;
+    protected String firstName;
+    protected String lastName;
+    protected String phoneNumber;
+    protected String companyName;
+    protected String firstAddress;
+    protected String secondAddress;
+    protected String city;
+    protected String postCode;
+    protected String mobilePhone;
+    protected String password;
+
     protected FakeValuesService fakeValuesService = new FakeValuesService(
             new Locale("en-US"),
             new RandomService());
@@ -50,6 +63,19 @@ public abstract class BaseTest {
         mobile = getEntity(MOBILE);
         log.info("Set Context WebDriver Attribute");
         context.setAttribute("WebDriver", driver);
+
+//        Test vars
+        email = fakeValuesService.bothify("????###@mail.test");
+        firstName = faker.name().firstName();
+        lastName = faker.name().lastName();
+        phoneNumber = faker.phoneNumber().subscriberNumber();
+        companyName = faker.company().name();
+        firstAddress = faker.address().streetAddress();
+        secondAddress = faker.address().secondaryAddress();
+        city = faker.address().city();
+        postCode = faker.address().zipCode();
+        mobilePhone = faker.phoneNumber().cellPhone();
+        password = faker.internet().password();
     }
 
     @AfterMethod(alwaysRun = true)

@@ -122,4 +122,76 @@ public class ContactUsTest extends BaseTest {
                 .enterSubject(subject)
                 .enterMessage(message);
     }
+
+    @Test
+    public void fakeTestForGeneralAmount12() {
+        contactUsSteps.enterName(name)
+                .enterEmail(email)
+                .enterSubject(subject)
+                .enterMessage(message);
+    }
+
+    @Test
+    public void fakeTestForGeneralAmount13() {
+        contactUsSteps.enterName(name)
+                .enterEmail(email)
+                .enterSubject(subject)
+                .enterMessage(message);
+    }
+
+    @Test
+    public void fakeTestForGeneralAmount14() {
+        contactUsSteps.enterName(name)
+                .enterEmail(email)
+                .enterSubject(subject)
+                .enterMessage(message);
+    }
+
+    @Test
+    public void fakeTestForGeneralAmount15() {
+        contactUsSteps.enterName(name)
+                .enterEmail(email)
+                .enterSubject(subject)
+                .enterMessage(message);
+    }
+
+    @Test
+    public void fakeTestForGeneralAmount16() {
+        contactUsSteps.enterName(name)
+                .enterEmail(email)
+                .enterSubject(subject)
+                .enterMessage(message);
+    }
+
+    @Test
+    public void fakeTestForGeneralAmount17() {
+        contactUsSteps.enterName(name)
+                .enterEmail(email)
+                .enterSubject(subject)
+                .enterMessage(message);
+    }
+
+    @Test
+    public void fakeTestForGeneralAmount18() {
+        contactUsSteps.enterName(name)
+                .enterEmail(email)
+                .enterSubject(subject)
+                .enterMessage(message);
+    }
+
+    @Test
+    public void fakeTestForGeneralAmount19() {
+        contactUsSteps.enterName(name)
+                .enterEmail(email)
+                .enterSubject(subject)
+                .enterMessage(message);
+    }
+
+    @Test
+    public void fakeTestForGeneralAmount20() {
+        contactUsSteps.enterName(name)
+                .enterEmail(email)
+                .enterSubject(subject)
+                .enterMessage(message);
+    }
 }
