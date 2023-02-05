@@ -9,7 +9,10 @@ public class DriverOptions {
     public static ChromeOptions getChromeOptions() {
         final ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
+        options.addArguments("--ignore-ssl-errors=yes");
+        options.addArguments("--ignore-certificate-errors");
         options.addArguments("--disable-popup-blocking");
+
         return options;
     }
 

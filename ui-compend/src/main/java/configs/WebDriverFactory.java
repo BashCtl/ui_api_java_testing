@@ -1,10 +1,14 @@
 package configs;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.PageLoadStrategy;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
@@ -13,7 +17,7 @@ import java.net.URL;
 import static configs.DriverOptions.*;
 
 public class WebDriverFactory {
-    private String GRID_URL = "http://localhost:4444/";
+    private String GRID_URL = "http://localhost:4444";
     private final String GRID_KEY = "grid";
     private final String BROWSER_KEY = "browser";
 
@@ -27,13 +31,17 @@ public class WebDriverFactory {
         switch (browser) {
             case "chrome":
                 try {
-                    return new RemoteWebDriver(new URL(GRID_URL), getChromeOptions());
+                    ChromeOptions options = getChromeOptions();
+                    options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                    return new RemoteWebDriver(new URL(GRID_URL), options);
                 } catch (MalformedURLException e) {
                     throw new RuntimeException("Can not create remote web driver.");
                 }
             case "edge":
                 try {
-                    return new RemoteWebDriver(new URL(GRID_URL), getEdgeOptions());
+                    FirefoxOptions options = getFirefoxOptions();
+                    options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                    return new RemoteWebDriver(new URL(GRID_URL), options);
                 } catch (MalformedURLException e) {
                     throw new RuntimeException("Can not create remote web driver.");
                 }

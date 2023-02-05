@@ -218,7 +218,6 @@ public class LoginTest extends BaseTest {
                 .enterPassword(password)
                 .clickRememberMeCheckbox()
                 .clickLoginBtn();
-
         var errorMsg = loginSteps.getErrorMsg();
 
         Assert.assertEquals(errorMsg, "Please complete the captcha and try again.");

@@ -68,6 +68,7 @@
                     <systemPropertyVariables>
                         <allure.results.directory>target/allure-results</allure.results.directory>
                         <env>QA</env>
+                        <grid>true</grid>
                     </systemPropertyVariables>
                 </configuration>
                 <dependencies>

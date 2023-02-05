@@ -1,18 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="Regression" verbose="10">
+<suite name="Regression" verbose="10" parallel="tests" thread-count="2">
     <listeners>
         <!-- Generates Test Suite execution reports: -->
         <listener class-name="org.testng.reporters.SuiteHTMLReporter"/>
     </listeners>
-
-    <suite-files>
-        <suite-file path="login.xml"/>
-        <suite-file path="register.xml"/>
-        <suite-file path="installation.xml"/>
-        <suite-file path="license.xml"/>
-        <suite-file path="mobile.xml"/>
-        <suite-file path="contact.xml"/>
-    </suite-files>
+    <test name="Contact Us page tests">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="tests.ContactUsTest"/>
+        </classes>
+    </test>
+    <test name="Installation tests">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="tests.InstallationTest"/>
+        </classes>
+    </test>
+    <test name="License tests">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="tests.LicenseTest"/>
+        </classes>
+    </test>
+    <test name="Login tests">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="tests.LoginTest"/>
+        </classes>
+    </test>
+    <test name="Mobile page tests">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="tests.MobileTest"/>
+        </classes>
+    </test>
+    <test name="Registration tests">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="tests.RegisterTest"/>
+        </classes>
+    </test>
 
 </suite>

@@ -3,3 +3,5 @@ target
 ui-compend/.allure
 ui-compend/logs
 ui-compend/test-output
+ui-compend/screenshots
+ui-compend/videos
