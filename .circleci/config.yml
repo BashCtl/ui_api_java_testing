@@ -28,7 +28,7 @@ jobs:
 
       - run:
           name: Verify running containers
-          command: docker-compose ps
+          command: docker ps
 
       - restore_cache:
           keys:
