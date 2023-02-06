@@ -30,6 +30,9 @@ jobs:
           command: |
             cd ui-compend
             sudo chown $USER:$USER -R .
+            sudo groupadd docker
+            sudo systemctl restart docker
+            sudo usermod -aG docker $USER
             docker-compose -f docker-compose.yml up -d
             sleep 100
 
