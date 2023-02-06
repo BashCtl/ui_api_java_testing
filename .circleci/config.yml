@@ -6,7 +6,6 @@ jobs:
     docker:
       - image: cimg/openjdk:17.0-browsers
 
-
     working_directory: ~/ui_api_testing
 
     environment:
@@ -14,15 +13,7 @@ jobs:
 
     steps:
       - checkout
-#      - run:
-#          name: Install Docker Compose
-#          command: |
-#            curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-#            chmod +x ~/docker-compose
-#            sudo mv ~/docker-compose /usr/local/bin/docker-compose
-
-      - setup_remote_docker:
-          docker_layer_caching: false
+      - setup_remote_docker
 
       - run:
           name: Docker Compose Up
@@ -30,11 +21,7 @@ jobs:
             cd ui-compend
             set -x
             docker-compose up -d
-            
-             # we are trying to check, via `dockerize`, if the service is ready.
-            docker run --network container:selenium-hub \
-            appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost:4444/status
-      
+            sleep 20
 
       - restore_cache:
           keys:
