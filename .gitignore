@@ -5,3 +5,6 @@ ui-compend/logs
 ui-compend/test-output
 ui-compend/screenshots
 ui-compend/videos
+ui-compend/target
+
+api-bin/target
