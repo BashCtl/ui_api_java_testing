@@ -13,7 +13,7 @@ import org.testng.annotations.*;
 import java.util.Locale;
 
 import static entities.EntityProvider.getEntity;
-import static entities.EntityType.*;
+import static entities.EntityTypeImpl.*;
 
 @Slf4j
 public abstract class BaseTest {

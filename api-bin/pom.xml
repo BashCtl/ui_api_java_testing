@@ -60,6 +60,11 @@
             <artifactId>allure-rest-assured</artifactId>
             <version>${allure.rest.assured.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>ui-compend</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

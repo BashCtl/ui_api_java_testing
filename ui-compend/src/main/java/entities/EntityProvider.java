@@ -10,7 +10,7 @@ public class EntityProvider<T extends Entity> {
 
     public static <T> T getEntity(EntityType entityType) {
         try {
-            return getDateOnject(entityType.getFileType(), entityType.getClassType());
+            return getDateOnject(entityType.getFile(), entityType.getClassType());
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException("Unable to load Entity.");
