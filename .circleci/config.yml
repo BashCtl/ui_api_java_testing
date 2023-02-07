@@ -120,7 +120,7 @@ jobs:
           keys:
             - $CIRCLE_PROJECT_REPONAME-{{ checksum "pom.xml" }}
             - $CIRCLE_PROJECT_REPONAME-
-            -
+            
       - run: mvn dependency:go-offline compile compiler:testCompile
       - save_cache:
           paths:
