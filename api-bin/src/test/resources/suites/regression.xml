@@ -6,9 +6,13 @@
         <listener class-name="org.testng.reporters.SuiteHTMLReporter"/>
     </listeners>
     <test name="Authentication tests (Register, Login)">
-
         <classes>
             <class name="tests.AuthTest"/>
+        </classes>
+    </test>
+    <test name="Users tests">
+        <classes>
+            <class name="tests.UsersTest"></class>
         </classes>
     </test>
 </suite>

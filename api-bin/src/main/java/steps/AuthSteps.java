@@ -16,9 +16,7 @@ import static org.hamcrest.Matchers.equalTo;
 public class AuthSteps extends BaseSteps<AuthSteps> {
     private SpecsBuilder specsBuilder = new SpecsBuilder();
     private Response response;
-    @Getter
-    @Setter
-    private ThreadLocal<String> authToken = ThreadLocal.withInitial(() -> null);
+
 
     @Step("User makes request to basic authentication.")
     public AuthSteps registration(User user) {
@@ -28,6 +26,7 @@ public class AuthSteps extends BaseSteps<AuthSteps> {
                 .post();
         String token = response.jsonPath().getString("data.Token");
         authToken.set(token);
+        baseResponse.set(response);
         log.info("Registration response body: \n{}", response.asPrettyString());
         return this;
     }
@@ -40,6 +39,7 @@ public class AuthSteps extends BaseSteps<AuthSteps> {
                 .post();
         String token = response.jsonPath().getString("data.Token");
         authToken.set(token);
+        baseResponse.set(response);
         log.info("Login response body: \n{}", response.asPrettyString());
         return this;
     }

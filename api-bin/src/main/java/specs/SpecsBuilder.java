@@ -14,6 +14,7 @@ import java.util.Base64;
 
 import static endpoints.Auth.LOGIN;
 import static endpoints.Auth.REGISTRATION;
+import static endpoints.Users.USERS;
 
 public class SpecsBuilder {
 
@@ -34,6 +35,17 @@ public class SpecsBuilder {
         return mainSpec()
                 .setBasePath(ThreadSafeEndpoint.getEndpoint())
                 .build();
+    }
+
+    public RequestSpecification getUsersPage(String token){
+        return auth(token)
+                .setBasePath(USERS)
+                .build();
+    }
+
+    private RequestSpecBuilder auth(String token){
+        return mainSpec()
+                .addHeader("Authorization", "Bearer " + token);
     }
 
     private RequestSpecBuilder mainSpec() {
