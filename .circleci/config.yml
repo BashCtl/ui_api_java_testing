@@ -40,7 +40,9 @@ jobs:
           paths:
             - ~/.m2
           key: m2-{{ checksum "pom.xml" }}
-
+      - run:
+          name: Install Maven
+          command: mvn clean install -DskipTests
       - run:
           name: Run UI Tests
           command: mvn clean test -pl ui-compend -e
@@ -120,7 +122,7 @@ jobs:
           keys:
             - $CIRCLE_PROJECT_REPONAME-{{ checksum "pom.xml" }}
             - $CIRCLE_PROJECT_REPONAME-
-            
+
       - run: mvn dependency:go-offline compile compiler:testCompile
       - save_cache:
           paths:

@@ -1,10 +1,8 @@
 package entity;
 
+import entities.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import entities.Entity;
-
-
 
 
 @Data

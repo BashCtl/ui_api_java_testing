@@ -11,6 +11,7 @@
     <modules>
         <module>ui-compend</module>
         <module>api-bin</module>
+        <module>common</module>
     </modules>
 
     <properties>

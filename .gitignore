@@ -9,3 +9,5 @@ ui-compend/target
 
 api-bin/target
 api-bin/test-output
+
+common/target

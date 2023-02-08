@@ -3,7 +3,7 @@ package entities;
 import lombok.Data;
 
 @Data
-public class Installation implements Entity {
+public class Installation implements Entity{
     private String appInstallTitle;
     private String appInstallPrice;
     private String troubleshoot;
