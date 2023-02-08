@@ -1,14 +1,14 @@
 package tests;
 
-import entity.Errors;
+import entity.Messages;
 import org.testng.annotations.BeforeMethod;
 
 import static entities.EntityProvider.getEntity;
-import static entity.EntityTypeImpl.ERRORS;
+import static entity.EntityTypeImpl.MESSAGES;
 
 public abstract class BaseTest {
 
-    protected Errors errors = getEntity(ERRORS);
+    protected Messages messages = getEntity(MESSAGES);
     @BeforeMethod
     public void beforeMethod(){
 

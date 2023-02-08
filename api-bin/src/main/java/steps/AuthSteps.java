@@ -28,7 +28,19 @@ public class AuthSteps extends BaseSteps<AuthSteps> {
                 .post();
         String token = response.jsonPath().getString("data.Token");
         authToken.set(token);
-        log.info("Auth token is: {}", authToken.get());
+        log.info("Registration response body: \n{}", response.asPrettyString());
+        return this;
+    }
+
+    @Step("User performs login.")
+    public AuthSteps login(User user) {
+        response = given().spec(specsBuilder.login())
+                .body(user)
+                .when()
+                .post();
+        String token = response.jsonPath().getString("data.Token");
+        authToken.set(token);
+        log.info("Login response body: \n{}", response.asPrettyString());
         return this;
     }
 
@@ -43,4 +55,18 @@ public class AuthSteps extends BaseSteps<AuthSteps> {
         response.then().body("message", equalTo(message));
         return this;
     }
+
+    @Step("Response field 'Name' should be: {name}")
+    public AuthSteps verifyResponseNameField(String name) {
+        response.then().body("data.Name", equalTo(name));
+        return this;
+    }
+
+    @Step("Response field 'Email' should be: {email}")
+    public AuthSteps verifyResponseEmailField(String email) {
+        response.then().body("data.Email", equalTo(email));
+        return this;
+    }
+
+
 }

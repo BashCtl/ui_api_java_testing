@@ -6,7 +6,7 @@ import lombok.Getter;
 
 public enum EntityTypeImpl implements EntityType {
     USER("user.json", User.class),
-    ERRORS("errors.json", Errors.class);
+    MESSAGES("messages.json", Messages.class);
 
 
     @Getter

@@ -29,13 +29,38 @@ public class AuthTest extends BaseTest {
         user.setEmail(email);
         authSteps.registration(user)
                 .verifyStatusCode(200)
-                .verifyResponseMsg(errors.getSuccess());
+                .verifyResponseMsg(messages.getSuccess());
     }
 
     @Test
     public void regWithAlreadyRegisteredEmail() {
         authSteps.registration(user)
                 .verifyStatusCode(200)
-                .verifyResponseMsg(errors.getRegisteredEmailErr());
+                .verifyResponseMsg(messages.getRegisteredEmailErr());
+    }
+
+    @Test
+    public void validUserLogin() {
+        authSteps.login(user)
+                .verifyStatusCode(200)
+                .verifyResponseMsg(messages.getSuccess())
+                .verifyResponseNameField(user.getName())
+                .verifyResponseEmailField(user.getEmail());
+    }
+
+    @Test
+    public void loginWithInvalidEmail() {
+        user.setEmail(email);
+        authSteps.login(user)
+                .verifyStatusCode(200)
+                .verifyResponseMsg(messages.getInvalidCredentialsErr());
+    }
+
+    @Test
+    public void loginWithInvalidPassword() {
+        user.setPassword(faker.internet().password());
+        authSteps.login(user)
+                .verifyStatusCode(200)
+                .verifyResponseMsg(messages.getInvalidCredentialsErr());
     }
 }

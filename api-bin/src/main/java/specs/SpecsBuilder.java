@@ -10,12 +10,31 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import utils.PropsLoader;
 
+import java.util.Base64;
+
+import static endpoints.Auth.LOGIN;
 import static endpoints.Auth.REGISTRATION;
 
 public class SpecsBuilder {
 
     private final String BASE_ULR = PropsLoader.loadProperties()
             .getProperty(System.getProperty("env", "QA"));
+
+
+
+    public RequestSpecification registration() {
+        ThreadSafeEndpoint.setEndpoint(REGISTRATION);
+        return mainSpec()
+                .setBasePath(ThreadSafeEndpoint.getEndpoint())
+                .build();
+    }
+
+    public RequestSpecification login() {
+        ThreadSafeEndpoint.setEndpoint(LOGIN);
+        return mainSpec()
+                .setBasePath(ThreadSafeEndpoint.getEndpoint())
+                .build();
+    }
 
     private RequestSpecBuilder mainSpec() {
         return new RequestSpecBuilder()
@@ -30,10 +49,7 @@ public class SpecsBuilder {
                 .log(LogDetail.ALL);
     }
 
-    public RequestSpecification registration() {
-        ThreadSafeEndpoint.setEndpoint(REGISTRATION);
-        return mainSpec()
-                .setBasePath(ThreadSafeEndpoint.getEndpoint())
-                .build();
+    private String encodeCredentials(String username, String password){
+        return new String(Base64.getEncoder().encode((username+":"+password).getBytes()));
     }
 }
