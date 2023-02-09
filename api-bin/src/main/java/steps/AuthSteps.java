@@ -46,27 +46,25 @@ public class AuthSteps extends BaseSteps<AuthSteps> {
 
     @Step("Response status code should be: {statusCode}")
     public AuthSteps verifyStatusCode(int statusCode) {
-        response.then().assertThat().statusCode(statusCode);
+        baseResponse.get().then().assertThat().statusCode(statusCode);
         return this;
     }
 
     @Step("Response message should be: {message}")
     public AuthSteps verifyResponseMsg(String message) {
-        response.then().body("message", equalTo(message));
+        baseResponse.get().then().body("message", equalTo(message));
         return this;
     }
 
     @Step("Response field 'Name' should be: {name}")
     public AuthSteps verifyResponseNameField(String name) {
-        response.then().body("data.Name", equalTo(name));
+        baseResponse.get().then().body("data.Name", equalTo(name));
         return this;
     }
 
     @Step("Response field 'Email' should be: {email}")
     public AuthSteps verifyResponseEmailField(String email) {
-        response.then().body("data.Email", equalTo(email));
+        baseResponse.get().then().body("data.Email", equalTo(email));
         return this;
     }
-
-
 }

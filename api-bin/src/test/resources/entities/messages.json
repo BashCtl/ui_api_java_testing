@@ -1,5 +1,7 @@
 {
   "success": "success",
   "registeredEmailErr": "The email address you have entered is already registered",
-  "invalidCredentialsErr": "invalid username or password"
+  "invalidCredentialsErr": "invalid username or password",
+  "errOccurred": "An error has occurred.",
+  "invalidRequest": "The request is invalid."
 }

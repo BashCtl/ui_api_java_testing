@@ -15,6 +15,7 @@ import java.util.Base64;
 import static endpoints.Auth.LOGIN;
 import static endpoints.Auth.REGISTRATION;
 import static endpoints.Users.USERS;
+import static endpoints.Users.USER_BY_ID;
 
 public class SpecsBuilder {
 
@@ -40,6 +41,12 @@ public class SpecsBuilder {
     public RequestSpecification getUsersPage(String token){
         return auth(token)
                 .setBasePath(USERS)
+                .build();
+    }
+
+    public RequestSpecification getUserById(String token){
+        return auth(token)
+                .setBasePath(USER_BY_ID)
                 .build();
     }
 

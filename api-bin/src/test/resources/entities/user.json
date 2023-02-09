@@ -1,5 +1,7 @@
 {
+  "id": 211552,
   "name": "JohnWick",
   "email": "john.wick@test.com",
-  "password": "My234SuperPass@@"
+  "password": "My234SuperPass@@",
+  "location": "USA"
 }
