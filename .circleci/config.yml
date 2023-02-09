@@ -129,7 +129,7 @@ jobs:
 
       - run:
           name: Make history dir for allure reports
-          command: mkdir ui-compend/target/allure-results/history
+          command: mkdir api-bin/target/allure-results/history
           when: always
 
       - run:
