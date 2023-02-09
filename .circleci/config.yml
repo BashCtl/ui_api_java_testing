@@ -56,8 +56,6 @@ jobs:
       - run:
           name: Get previous artifact links
           command: |
-            echo $CIRCLE_PROJECT_USERNAME
-            echo $CIRCLE_PROJECT_REPONAME
             CIRCLE_PREVIOUS_BUILD_NUM=`expr $CIRCLE_BUILD_NUM - 1`
             curl -H "Circle-Token:$CIRCLE_API_TOKEN" https://circleci.com/api/v2/project/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_PREVIOUS_BUILD_NUM/artifacts | grep -o 'https:\/\/[^"]*Allure\/history\/.*\.json' > artifacts.txt || true
           when: always
@@ -101,13 +99,6 @@ jobs:
           path: ui-compend/target/site/allure-maven-plugin
           destination: Allure
 
-      - run:
-          name: Check artifacts
-          command: |
-            ls -l ui-compend/target/site/allure-maven-plugin || true
-            pwd
-            ls -l ui-compend/target/site/allure-maven-plugin/history || true
-
   api-bin-testing:
     docker:
       - image: cimg/openjdk:17.0.6
@@ -135,6 +126,55 @@ jobs:
           name: Execute Tests
           command: mvn clean test -pl api-bin
           no_output_timeout: 180m
+
+      - run:
+          name: Make history dir for allure reports
+          command: mkdir ui-compend/target/allure-results/history
+          when: always
+
+      - run:
+          name: Get previous artifact links
+          command: |
+            CIRCLE_PREVIOUS_BUILD_NUM=`expr $CIRCLE_BUILD_NUM - 1`
+            curl -H "Circle-Token:$CIRCLE_API_TOKEN" https://circleci.com/api/v2/project/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_PREVIOUS_BUILD_NUM/artifacts | grep -o 'https:\/\/[^"]*Allure\/history\/.*\.json' > artifacts.txt || true
+          when: always
+
+      - run:
+          name: Download artifacts history
+          command: wget --header="Circle-Token:$CIRCLE_API_TOKEN" -i artifacts.txt
+          when: always
+
+      - run:
+          name: Rename and copy history artifacts to allure-result
+          command: |
+            pwd        
+            cp history.json api-bin/target/allure-results/history/ && cp history-trend.json api-bin/target/allure-results/history/ || true
+            cp categories-trend.json api-bin/target/allure-results/history/ && cp duration-trend.json api-bin/target/allure-results/history/ || true
+            cp retry-trend.json api-bin/target/allure-results/history/ || true
+          when: always
+
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/api-bin/test-results/junit/
+            find . -type f -regex ".*/api-bin/target/surefire-reports/junitreports/.*xml" -exec cp {} ~/test-results/junit/ \;
+          when: always
+
+      - store_test_results:
+          path: ~/api-bin/test-results
+
+      - store_artifacts:
+          path: ~/api-bin/test-results/junit
+
+      - run:
+          name: Generate Allure report
+          command: mvn allure:report -pl api-bin
+          when: always
+
+      - store_artifacts:
+          path: api-bin/target/site/allure-maven-plugin
+          destination: Allure
+
 
 
 workflows:
