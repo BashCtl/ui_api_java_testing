@@ -127,7 +127,7 @@ jobs:
       - run:
           name: Execute Tests
           command: mvn clean test -pl api-bin
-          no_output_timeout: 180m
+          when: always
 
       - run:
           name: Make history dir for allure reports
