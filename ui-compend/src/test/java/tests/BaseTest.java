@@ -3,6 +3,7 @@ package tests;
 import com.github.javafaker.Faker;
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
+import com.google.common.collect.ImmutableMap;
 import configs.WebDriverFactory;
 import entities.*;
 import lombok.extern.slf4j.Slf4j;
@@ -12,8 +13,10 @@ import org.testng.annotations.*;
 
 import java.util.Locale;
 
+import static com.github.automatedowl.tools.AllureEnvironmentWriter.allureEnvironmentWriter;
 import static entities.EntityProvider.getEntity;
 import static entities.EntityTypeImpl.*;
+import static utils.PropsLoader.loadProperties;
 
 @Slf4j
 public abstract class BaseTest {
@@ -45,10 +48,17 @@ public abstract class BaseTest {
     protected Faker faker = new Faker();
 
     @Parameters("browser")
-    @BeforeClass(alwaysRun = true)
-    public void beforeClass(@Optional("chrome") String browser) {
+    @BeforeSuite(alwaysRun = true)
+    public void beforeSuite(@Optional("chrome") String browser) {
         log.info("Set system browser property");
         System.setProperty("browser", browser);
+        final String ENV_URL = loadProperties()
+                .getProperty(System.getProperty("env", "QA"));
+        allureEnvironmentWriter(ImmutableMap.<String, String>builder()
+                .put("Browser", System.getProperty("browser"))
+                .put("Env", System.getProperty("env"))
+                .put("URL", ENV_URL)
+                .build());
 
     }
 
