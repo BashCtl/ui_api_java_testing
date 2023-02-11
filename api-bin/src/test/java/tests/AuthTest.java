@@ -3,12 +3,15 @@ package tests;
 import com.github.javafaker.Faker;
 import entities.EntityProvider;
 import entity.User;
+import listeners.LogListener;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import steps.AuthSteps;
 
 import static entity.EntityTypeImpl.USER;
 
+@Listeners(LogListener.class)
 public class AuthTest extends BaseTest {
 
     private AuthSteps authSteps = new AuthSteps();
