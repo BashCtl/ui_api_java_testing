@@ -9,5 +9,6 @@ ui-compend/target
 
 api-bin/target
 api-bin/test-output
+api-bin/.allure
 
 common/target
