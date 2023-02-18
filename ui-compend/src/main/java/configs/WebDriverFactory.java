@@ -17,7 +17,7 @@ import java.net.URL;
 import static configs.DriverOptions.*;
 
 public class WebDriverFactory {
-    private String GRID_URL = "http://localhost:4444";
+    private String GRID_URL = "http://localhost:4444/wd/hub";
     private final String GRID_KEY = "grid";
     private final String BROWSER_KEY = "browser";
 
